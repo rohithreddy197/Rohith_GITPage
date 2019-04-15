@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+.forms{
+text-align: center;
+}
+body{
+    background-color:cadetblue
+}
+button, .submit{
+    margin: 0 auto;
+      background-color: #7c14dd;
+      color: white;
+      padding: 8px 24px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+}
+input[type=text]{
+
+}
+</style>
+</head>
+<body>
+<center><h1>Gallery Admin</h1></center>
+<div class="forms" >
+      <form onsubmit="add()">
+      <p>Name Of the Image: <input type="text" id="name" name="name" placeholder="Name of the Image" required><br/></p>
+      <p>URL of the Image : <input type="text" id="url" name="url" placeholder="URL from which you want to upload" required><br/></p>
+      <p>Information about image: <input type="text" id="info" name="info" placeholder="Damn! That looks splendid!" required><br/></p>
+      <p>Date of Updation: <input type="date" id="date" name="date" placeholder="Enter a valid date of updation" required><br/></p>
+      <input type="submit" class="submit" value="submit" name="submit" required>
+      <br>
+      </form>
+      <button onclick="add()">Add Image</button>
+      <button onclick="delete()">Click on any image to delete it</button>
+      </div>
+      <div>
+            <table id="imageTable" style="border-collapse:collapse;" align=center>
+            </table>
+      </div>
+      <script>
+      var obj={"images":[{"name":"joker1","url":"images/joker1.jpeg","information":"Joker in jail","updtedDate":"2019-10-03","id":"0"},
+      {"name":"joker1","url":"images/pic1.webp","information":"ElonMusk about failure","updtedDate":"2019-10-03","id":"1"},
+      {"name":"joker1","url":"images/elonmusk2.jpeg","information":"ElonMusk about steps","updtedDate":"2019-10-03","id":"2"},
+      {"name":"joker1","url":"images/elonmusk3.jpeg","information":"ElonMusk Being Persistent","updtedDate":"2019-10-03","id":"3"},
+      {"name":"joker1","url":"images/joker2.jpeg","information":"Joker after blast","updtedDate":"2019-10-03","id":"4"},
+      ]};
+      images=obj.images;
+      var $=jQuery;
+      function setImages(){
+var tableRef = document.getElementById('imageTable');
+tableRef.innerHTML = "";
+		var tr,td;
+    $(document).ready(function(){
+  $("img").click(function(){
+  if(confirm("You cannot get imageno: "+image.index+" back after deleting"))
+  {
+        deleteImage(image.index);
+  }
+    });
+  });
+  for(var i in images){
+		var image = document.createElement("img");
+        image.index=i;
+    image.style.width="100%";
+    image.style.height="100%";
+    image.style.display="block";
+		if(i%5 === 0){
+			tr = tableRef.insertRow();
+		}
+		td  = tr.insertCell();
+		image.src = images[i].url;
+    td.appendChild(image);
+    td.style.width="400px";
+    td.style.height="300px";
+    td.style.padding="3px";
+	}
+}
+
+setImages();
+function add()
+{
+  var name=document.getElementById("name").value;
+	var url=document.getElementById("url").value;
+  var info=document.getElementById("info").value;
+  var date=document.getElementById("date").value;
+	obj['images'].push({"name": name, "url" : url,"information": info, "updatedDate": date, "id":""});
+	setImages();
+  alert("Image added successfully");
+}
+function deleteImage(id){
+   for(var i in images){
+          if(images[i].id == id ){
+            console.log("Deleting image "+ id);
+               delete images[i];
+               break;
+          }
+        }
+        setImages();
+        }
+</script>
+      
