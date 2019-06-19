@@ -65,18 +65,14 @@ function add()
     }   
 }
 function deleteImage(id){
-    console.log(id);
-    // for(var i in images){
-    //   if(images[i].id == id ){
-    //     console.log("Deleting image "+ id);
-    //        delete images[i];
-    //        break;
-    //   }
-    // }
-    for(var i=0;i<images.length;i++){
-        if(i==id){
-            console.log("deleting image +"+id);
-        }
+//     console.log(id);
+    for(var i in images){
+      if(images[i].id == id ){
+        console.log("Deleting image "+ id);
+           delete images[i];
+           break;
+      }
     }
+ 
     setImages();
 }
