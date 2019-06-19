@@ -1,0 +1,15 @@
+.forms{
+    text-align: center;
+    }
+    body{
+        background-color:cadetblue
+    }
+    button, .submit{
+        margin: 0 auto;
+          background-color: #7c14dd;
+          color: white;
+          padding: 8px 24px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+    }
